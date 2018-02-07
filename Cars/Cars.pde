@@ -1,16 +1,22 @@
+import processing.sound.*;
 PVector Position = new PVector(random(100), random(100));
+SoundFile file;
+String audioName = "Let Me Go.mp3";
 PVector Direction = new PVector (0, 0);
 PImage gc;
 PImage bc;
 PImage go;
 float bspeed = 3;
 PVector Mouse = new PVector (0, 0);
-float im;
-float jm;
 int m;
 int c;
+float rotation;
+float O;
+float A;
 void setup()
 {
+  file = new SoundFile(this, audioName);
+  file.play();
   size(2000, 2000);
   imageMode(CENTER);
   gc = loadImage("GoodGuyCar.png");
@@ -23,9 +29,8 @@ void setup()
 void draw()
 {
   background(35, 245, 141);
-
+  image(gc,mouseX,mouseY);
   PVector Mouse = new PVector (mouseX, mouseY);
-  image(gc, mouseX, mouseY);
   Direction = PVector.sub(Position, Mouse);
   bspeed = Direction.mag();
   Direction.normalize();
@@ -50,4 +55,5 @@ void draw()
     text((m-(c/3)), 500, 500);
     stop();
   }
+ 
 }
